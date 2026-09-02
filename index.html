@@ -30,7 +30,7 @@
   }
   .profile {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
   }
   .avatar {
     width: 76px;
@@ -63,17 +63,53 @@
     text-decoration: underline;
     opacity: 0.85;
   }
+
+  /* 검색 */
+  .search-box {
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border-radius: 14px;
+    border: none;
+    background: rgba(255,255,255,0.92);
+    font-size: 14px;
+    color: var(--text-main);
+    outline: none;
+    box-shadow: 0 4px 14px rgba(80, 30, 10, 0.1);
+  }
+  .search-box input::placeholder { color: var(--text-sub); }
+  .search-box .icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .search-meta {
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    margin: 0 2px 12px;
+    min-height: 16px;
+  }
+
   .list {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
   .card {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    padding: 16px 18px;
+    padding: 12px 16px;
     text-decoration: none;
     color: var(--text-main);
     box-shadow: 0 4px 14px rgba(80, 30, 10, 0.08);
@@ -84,6 +120,27 @@
     border: 1.5px solid var(--accent);
     background: linear-gradient(135deg, #fff7f2, #ffffff);
   }
+  .thumb {
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #f5eee9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    overflow: hidden;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card-body {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
   .tag {
     display: inline-block;
     font-size: 10.5px;
@@ -91,7 +148,7 @@
     letter-spacing: 0.02em;
     padding: 3px 8px;
     border-radius: 999px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .tag.pin { background: var(--accent); color: #fff; }
   .tag.num { background: #f3e9e3; color: var(--text-sub); }
@@ -105,11 +162,39 @@
     font-size: 13px;
     color: var(--text-sub);
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   .price {
     color: var(--accent);
     font-weight: 700;
   }
+
+  .empty {
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 13.5px;
+    padding: 28px 0;
+  }
+
+  .more-btn {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 13px;
+    border: none;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .more-btn:active { background: rgba(255,255,255,0.28); }
+
   footer {
     margin-top: 30px;
     text-align: center;
@@ -137,132 +222,188 @@
       <a class="handle" href="https://x.com/sidejoblab_kr" target="_blank" rel="noopener">@sidejoblab_kr</a>
     </div>
 
-    <div class="list">
-      <a class="card pinned" href="https://www.latpeed.com/products/FeWzL" target="_blank" rel="noopener sponsored">
-        <span class="tag pin">📌 첫 실험</span>
-        <p class="title">자소서 막힐 때 바로 쓰는 GPT/Claude 프롬프트 30선</p>
-        <p class="sub">소재정리 · 항목별작성 · 첨삭 · 이력서 · 면접대비 <span class="price">8,900원</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gHYvqdTGkm" target="_blank" rel="noopener sponsored">
-        <span class="tag num">20번째 실험</span>
-        <p class="title">[청소+정리 끝판왕]집안굿 5세대 화</p>
-        <p class="sub">매번 하기 싫은 화장실 청소, 이거 하나면 끝납니다! <span class="price">23,900원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gGNTEjWObs" target="_blank" rel="noopener sponsored">
-        <span class="tag num">19번째 실험</span>
-        <p class="title">드롱기 라스페셜리스타 아르떼 커피메이</p>
-        <p class="sub">카페 그 이상의 맛, 집에서 직접 즐겨보세요! <span class="price">719,020원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gGjE3PQ7BQ" target="_blank" rel="noopener sponsored">
-        <span class="tag num">18번째 실험</span>
-        <p class="title">소웰홈 다층 주방수납선반 야채보관 바</p>
-        <p class="sub">요리할 때마다 좁고 복잡한 주방 때문에 답답하셨죠? <span class="price">57,180원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gE8YBcluOy" target="_blank" rel="noopener sponsored">
-        <span class="tag num">17번째 실험</span>
-        <p class="title">Apple 맥북 에어 13 M5칩</p>
-        <p class="sub">드디어 등장한 애플의 신작, 맥북 에어 13 M5칩을 소개합니다! <span class="price">2,038,890원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gEEIGAHGsm" target="_blank" rel="noopener sponsored">
-        <span class="tag num">16번째 실험</span>
-        <p class="title">투비컷 가르시니아캄보지아추출물 54g</p>
-        <p class="sub">먹으면서 관리하는 다이어트, 아직도 못 찾으셨나요? <span class="price">104,800원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gDtZHrHetU" target="_blank" rel="noopener sponsored">
-        <span class="tag num">15번째 실험</span>
-        <p class="title">필립스 1200 전자동 에스프레소 커</p>
-        <p class="sub">매일 사 먹는 커피 값, 이제 집에서 아껴보세요! <span class="price">334,760원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gCZPvWTuLc" target="_blank" rel="noopener sponsored">
-        <span class="tag num">14번째 실험</span>
-        <p class="title">HOMEY NEST 전자레인지 슬라이</p>
-        <p class="sub">전자레인지 자리 때문에 주방 좁아 터지셨죠? 이거 하나면 끝나요! <span class="price">59,500원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gBO4N8Krim" target="_blank" rel="noopener sponsored">
-        <span class="tag num">13번째 실험</span>
-        <p class="title">레노버 아이디어탭 11 태블릿PC</p>
-        <p class="sub">삼십만 원대에 이 스펙 실화인가요? 레노버 아이디어탭을 소개합니다! <span class="price">378,000원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gBkSmE4Eh2" target="_blank" rel="noopener sponsored">
-        <span class="tag num">12번째 실험</span>
-        <p class="title">필립스 2200 전자동 에스프레소 커</p>
-        <p class="sub">집에서 홈카페 즐기고 싶다면, 이 커피머신 하나면 끝이에요! <span class="price">398,430원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gAarhBsOS4" target="_blank" rel="noopener sponsored">
-        <span class="tag num">11번째 실험</span>
-        <p class="title">커피머신 가정용 드립 전자동 원두 커</p>
-        <p class="sub">매일 카페 가기 지치셨죠? 집에서 즐기는 완벽한 프리미엄 커피머신을 소개합니다! <span class="price">699,990원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gzFZBurFGS" target="_blank" rel="noopener sponsored">
-        <span class="tag num">10번째 실험</span>
-        <p class="title">LG전자 퓨리케어 360도 Hit 공</p>
-        <p class="sub">요즘 미세먼지 너무 심하죠? 우리집 공기를 싹 바꿔줄 역대급 공기청정기 가져왔어요! <span class="price">357,710원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gyvrJYOpFc" target="_blank" rel="noopener sponsored">
-        <span class="tag num">9번째 실험</span>
-        <p class="title">베이직스 2026 베이직북 16 프로</p>
-        <p class="sub">백만 원대 노트북 찾으시나요? 이거 하나면 끝납니다! <span class="price">1,071,600원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gx1QQkyzmv" target="_blank" rel="noopener sponsored">
-        <span class="tag num">8번째 실험</span>
-        <p class="title">LG전자 퓨리케어 360도 오브제컬렉</p>
-        <p class="sub">미세먼지 지옥에서 살아남는 꿀템! 이거 하나면 끝나요. <span class="price">722,650원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gw5TDB2QzQ" target="_blank" rel="noopener sponsored">
-        <span class="tag num">7번째 실험</span>
-        <p class="title">레노버 Idea Tab Plus 12.1</p>
-        <p class="sub">삼십만원대 역대급 가성비 태블릿 <span class="price">369,000원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/re/AFFSDP?lptag=AF2817003&pageKey=9608130050&itemId=28684284346&vendorItemId=95625818567" target="_blank" rel="noopener sponsored">
-        <span class="tag num">6번째 실험</span>
-        <p class="title">LG 그램15 (코어i5·16GB·512GB)</p>
-        <p class="sub">무게 하나로 후기 폭발 <span class="price">898,000원대</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gpHs3UKWwm" target="_blank" rel="noopener sponsored">
-        <span class="tag num">5번째 실험</span>
-        <p class="title">크록스 비아 클로그 샌들</p>
-        <p class="sub">정가 79,900원 → <span class="price">73%할인 20,800원</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gnThd6IyDQ" target="_blank" rel="noopener sponsored">
-        <span class="tag num">4번째 실험</span>
-        <p class="title">도미나스 다크스팟 커렉팅 골드 크림 45g</p>
-        <p class="sub">정가 58,000원 → <span class="price">60%할인 23,000원</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/glMaQcH2rY" target="_blank" rel="noopener sponsored">
-        <span class="tag num">3번째 실험</span>
-        <p class="title">스탠리 카페 투고 트래블 머그 473ml</p>
-        <p class="sub">정가 42,000원 → <span class="price">58%할인 17,550원</span></p>
-      </a>
-
-      <a class="card" href="https://link.coupang.com/a/gkpAnV8IuW" target="_blank" rel="noopener sponsored">
-        <span class="tag num">2번째 실험</span>
-        <p class="title">창신리빙 스카이락 밀폐 반찬용기 12종 세트</p>
-        <p class="sub">73%할인 <span class="price">8,900원</span></p>
-      </a>
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input id="search" type="text" placeholder="상품명으로 검색 (예: 커피, 노트북, 청소)" autocomplete="off" />
     </div>
+    <p class="search-meta" id="searchMeta"></p>
+
+    <div class="list" id="list"></div>
+    <button class="more-btn" id="moreBtn" type="button" style="display:none"></button>
+    <p class="empty" id="empty" style="display:none">검색 결과가 없어요</p>
 
     <footer>
       <p class="disclosure">이 페이지의 쿠팡 상품 링크는 쿠팡 파트너스 활동의 일환으로,<br />이에 따른 일정액의 수수료를 제공받을 수 있습니다.</p>
       <p class="credit">부업실험실 · sidejoblab</p>
     </footer>
   </div>
+
+<script>
+  // ------------------------------------------------------------------
+  // 상품 데이터. 새 "실험"을 추가할 땐 이 배열 맨 앞에 객체를 하나 끼워
+  // 넣으면 됨 (rank는 이전 최댓값+1). image는 가능하면 실제 상품 사진
+  // URL을 채워 넣을 것 — 없으면 title/sub 키워드로 자동 이모지가 붙는다.
+  // pinned: true는 "첫 실험" 카드 1개에만 사용(항상 최상단 고정).
+  // ------------------------------------------------------------------
+  const ITEMS = [
+    { rank: 1, pinned: true, url: "https://www.latpeed.com/products/FeWzL",
+      title: "자소서 막힐 때 바로 쓰는 GPT/Claude 프롬프트 30선",
+      sub: "소재정리 · 항목별작성 · 첨삭 · 이력서 · 면접대비", price: "8,900원" },
+    { rank: 20, url: "https://link.coupang.com/a/gHYvqdTGkm",
+      title: "[청소+정리 끝판왕]집안굿 5세대 화",
+      sub: "매번 하기 싫은 화장실 청소, 이거 하나면 끝납니다!", price: "23,900원대" },
+    { rank: 19, url: "https://link.coupang.com/a/gGNTEjWObs",
+      title: "드롱기 라스페셜리스타 아르떼 커피메이",
+      sub: "카페 그 이상의 맛, 집에서 직접 즐겨보세요!", price: "719,020원대" },
+    { rank: 18, url: "https://link.coupang.com/a/gGjE3PQ7BQ",
+      title: "소웰홈 다층 주방수납선반 야채보관 바",
+      sub: "요리할 때마다 좁고 복잡한 주방 때문에 답답하셨죠?", price: "57,180원대" },
+    { rank: 17, url: "https://link.coupang.com/a/gE8YBcluOy",
+      title: "Apple 맥북 에어 13 M5칩",
+      sub: "드디어 등장한 애플의 신작, 맥북 에어 13 M5칩을 소개합니다!", price: "2,038,890원대" },
+    { rank: 16, url: "https://link.coupang.com/a/gEEIGAHGsm",
+      title: "투비컷 가르시니아캄보지아추출물 54g",
+      sub: "먹으면서 관리하는 다이어트, 아직도 못 찾으셨나요?", price: "104,800원대" },
+    { rank: 15, url: "https://link.coupang.com/a/gDtZHrHetU",
+      title: "필립스 1200 전자동 에스프레소 커",
+      sub: "매일 사 먹는 커피 값, 이제 집에서 아껴보세요!", price: "334,760원대" },
+    { rank: 14, url: "https://link.coupang.com/a/gCZPvWTuLc",
+      title: "HOMEY NEST 전자레인지 슬라이",
+      sub: "전자레인지 자리 때문에 주방 좁아 터지셨죠? 이거 하나면 끝나요!", price: "59,500원대" },
+    { rank: 13, url: "https://link.coupang.com/a/gBO4N8Krim",
+      title: "레노버 아이디어탭 11 태블릿PC",
+      sub: "삼십만 원대에 이 스펙 실화인가요? 레노버 아이디어탭을 소개합니다!", price: "378,000원대" },
+    { rank: 12, url: "https://link.coupang.com/a/gBkSmE4Eh2",
+      title: "필립스 2200 전자동 에스프레소 커",
+      sub: "집에서 홈카페 즐기고 싶다면, 이 커피머신 하나면 끝이에요!", price: "398,430원대" },
+    { rank: 11, url: "https://link.coupang.com/a/gAarhBsOS4",
+      title: "커피머신 가정용 드립 전자동 원두 커",
+      sub: "매일 카페 가기 지치셨죠? 집에서 즐기는 완벽한 프리미엄 커피머신을 소개합니다!", price: "699,990원대" },
+    { rank: 10, url: "https://link.coupang.com/a/gzFZBurFGS",
+      title: "LG전자 퓨리케어 360도 Hit 공",
+      sub: "요즘 미세먼지 너무 심하죠? 우리집 공기를 싹 바꿔줄 역대급 공기청정기 가져왔어요!", price: "357,710원대" },
+    { rank: 9, url: "https://link.coupang.com/a/gyvrJYOpFc",
+      title: "베이직스 2026 베이직북 16 프로",
+      sub: "백만 원대 노트북 찾으시나요? 이거 하나면 끝납니다!", price: "1,071,600원대" },
+    { rank: 8, url: "https://link.coupang.com/a/gx1QQkyzmv",
+      title: "LG전자 퓨리케어 360도 오브제컬렉",
+      sub: "미세먼지 지옥에서 살아남는 꿀템! 이거 하나면 끝나요.", price: "722,650원대" },
+    { rank: 7, url: "https://link.coupang.com/a/gw5TDB2QzQ",
+      title: "레노버 Idea Tab Plus 12.1",
+      sub: "삼십만원대 역대급 가성비 태블릿", price: "369,000원대" },
+    { rank: 6, url: "https://link.coupang.com/re/AFFSDP?lptag=AF2817003&pageKey=9608130050&itemId=28684284346&vendorItemId=95625818567",
+      title: "LG 그램15 (코어i5·16GB·512GB)",
+      sub: "무게 하나로 후기 폭발", price: "898,000원대" },
+    { rank: 5, url: "https://link.coupang.com/a/gpHs3UKWwm",
+      title: "크록스 비아 클로그 샌들",
+      sub: "정가 79,900원 → 73%할인", price: "20,800원" },
+    { rank: 4, url: "https://link.coupang.com/a/gnThd6IyDQ",
+      title: "도미나스 다크스팟 커렉팅 골드 크림 45g",
+      sub: "정가 58,000원 → 60%할인", price: "23,000원" },
+    { rank: 3, url: "https://link.coupang.com/a/glMaQcH2rY",
+      title: "스탠리 카페 투고 트래블 머그 473ml",
+      sub: "정가 42,000원 → 58%할인", price: "17,550원" },
+    { rank: 2, url: "https://link.coupang.com/a/gkpAnV8IuW",
+      title: "창신리빙 스카이락 밀폐 반찬용기 12종 세트",
+      sub: "73%할인", price: "8,900원" },
+  ];
+
+  // 실제 image가 없는 카드에 붙일 키워드 기반 이모지 폴백.
+  const ICON_RULES = [
+    [/자소서|프롬프트|이력서/, "📝"],
+    [/청소|집안굿/, "🧽"],
+    [/커피|에스프레소/, "☕"],
+    [/전자레인지|주방|수납/, "🍳"],
+    [/맥북|노트북|그램|베이직북|아이디어탭|태블릿/, "💻"],
+    [/가르시니아|다이어트/, "💊"],
+    [/퓨리케어|공기청정/, "🌬️"],
+    [/크록스|샌들/, "👟"],
+    [/크림|다크스팟/, "🧴"],
+    [/머그|텀블러/, "🥤"],
+    [/반찬용기|밀폐/, "🍱"],
+  ];
+  function fallbackIcon(item) {
+    const text = item.title + " " + item.sub;
+    for (const [re, emoji] of ICON_RULES) if (re.test(text)) return emoji;
+    return "🛍️";
+  }
+
+  const PAGE_SIZE = 8; // 첫 화면엔 고정 카드 + 최신 8개만, 나머지는 "더보기"로
+  let visibleCount = PAGE_SIZE;
+
+  const listEl = document.getElementById("list");
+  const moreBtn = document.getElementById("moreBtn");
+  const emptyEl = document.getElementById("empty");
+  const metaEl = document.getElementById("searchMeta");
+  const searchEl = document.getElementById("search");
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  function cardHtml(item) {
+    const thumb = item.image
+      ? `<img src="${escapeHtml(item.image)}" alt="" loading="lazy" />`
+      : fallbackIcon(item);
+    const tag = item.pinned
+      ? `<span class="tag pin">📌 첫 실험</span>`
+      : `<span class="tag num">${item.rank}번째 실험</span>`;
+    return `
+      <a class="card${item.pinned ? " pinned" : ""}" href="${escapeHtml(item.url)}" target="_blank" rel="noopener sponsored">
+        <span class="thumb">${thumb}</span>
+        <span class="card-body">
+          ${tag}
+          <p class="title">${escapeHtml(item.title)}</p>
+          <p class="sub">${escapeHtml(item.sub)} ${item.price ? `<span class="price">${escapeHtml(item.price)}</span>` : ""}</p>
+        </span>
+      </a>`;
+  }
+
+  function render() {
+    const q = searchEl.value.trim().toLowerCase();
+    const pinned = ITEMS.filter((i) => i.pinned);
+    const rest = ITEMS.filter((i) => !i.pinned);
+
+    rest.sort((a, b) => b.rank - a.rank); // 배열 삽입 순서에 의존하지 않고 항상 최신순
+
+    let filteredRest = rest;
+    let searching = q.length > 0;
+    if (searching) {
+      filteredRest = rest.filter((i) => (i.title + " " + i.sub).toLowerCase().includes(q));
+    }
+
+    const shown = searching ? filteredRest : filteredRest.slice(0, visibleCount);
+    const pinnedShown = searching
+      ? pinned.filter((i) => (i.title + " " + i.sub).toLowerCase().includes(q))
+      : pinned;
+
+    const all = [...pinnedShown, ...shown];
+    listEl.innerHTML = all.map(cardHtml).join("");
+
+    emptyEl.style.display = all.length === 0 ? "block" : "none";
+
+    if (searching) {
+      metaEl.textContent = `"${searchEl.value.trim()}" 검색결과 ${all.length}개`;
+      moreBtn.style.display = "none";
+    } else {
+      metaEl.textContent = "";
+      const remaining = filteredRest.length - shown.length;
+      if (remaining > 0) {
+        moreBtn.style.display = "block";
+        moreBtn.textContent = `이전 실험 더보기 (${remaining}개 남음)`;
+      } else {
+        moreBtn.style.display = "none";
+      }
+    }
+  }
+
+  moreBtn.addEventListener("click", () => {
+    visibleCount += PAGE_SIZE;
+    render();
+  });
+  searchEl.addEventListener("input", () => render());
+
+  render();
+</script>
 </body>
 </html>
