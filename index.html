@@ -224,7 +224,7 @@
 
     <div class="search-box">
       <span class="icon">🔍</span>
-      <input id="search" type="text" placeholder="상품명으로 검색 (예: 커피, 노트북, 청소)" autocomplete="off" />
+      <input id="search" type="text" placeholder="상품명 또는 영상 속 번호로 검색 (예: 커피, 노트북, 37)" autocomplete="off" />
     </div>
     <p class="search-meta" id="searchMeta"></p>
 
@@ -375,6 +375,15 @@
       </a>`;
   }
 
+  // 2026-09-10: 릴스 캡션/화면 배지에 "No.37" 식으로 순번을 홍보하기 시작하면서,
+  // 시청자가 나중에 그 번호로 이 페이지에서 찾아올 수 있어야 한다(사용자 요청). 기존엔
+  // title+sub 텍스트만 봐서 숫자를 넣어도 못 찾았음 — rank 정확 일치를 OR로 추가.
+  function matchesQuery(item, q) {
+    if ((item.title + " " + item.sub).toLowerCase().includes(q)) return true;
+    if (/^\d+$/.test(q) && String(item.rank) === q) return true;
+    return false;
+  }
+
   function render() {
     const q = searchEl.value.trim().toLowerCase();
     const pinned = ITEMS.filter((i) => i.pinned);
@@ -385,12 +394,12 @@
     let filteredRest = rest;
     let searching = q.length > 0;
     if (searching) {
-      filteredRest = rest.filter((i) => (i.title + " " + i.sub).toLowerCase().includes(q));
+      filteredRest = rest.filter((i) => matchesQuery(i, q));
     }
 
     const shown = searching ? filteredRest : filteredRest.slice(0, visibleCount);
     const pinnedShown = searching
-      ? pinned.filter((i) => (i.title + " " + i.sub).toLowerCase().includes(q))
+      ? pinned.filter((i) => matchesQuery(i, q))
       : pinned;
 
     const all = [...pinnedShown, ...shown];
